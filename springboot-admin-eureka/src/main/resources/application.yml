@@ -1,0 +1,6 @@
+server:
+  port: 7001
+eureka:
+  client:
+    register-with-eureka: false  # false 标识不向注册公司注册自己
+    fetch-registry: false  # false 标识自己及时注册中心，我的职责就是维护服务实例。并不需要检索服务

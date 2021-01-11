@@ -1,0 +1,36 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:7001/eureka
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    lease-expiration-duration-in-seconds: 10
+    lease-renewal-interval-in-seconds: 10
+    prefer-ip-address: true
+    metadata-map:
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+management:
+  health:
+    # 指定磁盘告警
+    diskspace:
+      threshold: '10GB'
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: 'env,sessions,heapdump,flyway,loggers,logfile,beans,caches,sessions,scheduledtasks'
+
+spring:
+  application:
+    name: springboot-admin-client
+  # 接入spring security
+  security:
+    user:
+      name: "admin"
+      password: "test"
+server:
+  port: 8082
